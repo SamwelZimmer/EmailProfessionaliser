@@ -1,8 +1,15 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import "./globals.css";
+import { Inter, Kanit, Arsenal, Outfit } from "next/font/google";
 
-const inter = Inter({ subsets: ["latin"] });
+import "./globals.css";
+import Topbar from "@/components/hud/Topbar";
+import Toolbar from "@/components/hud/Toolbar";
+import AppProvider from "@/components/context/AppProvider";
+
+const inter = Outfit({
+  subsets: ["latin"],
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+});
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -16,7 +23,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <AppProvider>
+          <Topbar />
+          {children}
+          <Toolbar />
+        </AppProvider>
+      </body>
     </html>
   );
 }
