@@ -63,6 +63,7 @@
   * {
     @apply border-border;
   }
+
   body {
     @apply bg-background text-foreground;
   }
@@ -116,4 +117,8 @@ ol {
   color: rgb(99 102 241);
   cursor: pointer;
   text-decoration: underline;
+}
+
+.markdown > * {
+  all: revert;
 }

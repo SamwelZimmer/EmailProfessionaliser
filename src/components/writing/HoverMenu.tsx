@@ -245,7 +245,7 @@ const UrlForm = ({}) => {
         <input
           value={url}
           onChange={(e) => setUrl(e.target.value)}
-          placeholder="Enter link..."
+          placeholder="Doesn't work yet..."
           className="flex h-9 w-full rounded-tl-[14px] rounded-md border border-input focus:border-zinc-600 bg-transparent px-3 py-1 text-sm shadow-sm transition-colors placeholder:text-muted-foreground placeholder:text-xs focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50"
         />
         <button

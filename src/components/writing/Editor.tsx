@@ -6,13 +6,13 @@ import { AppContext } from "@/components/context/AppProvider";
 
 import HoverMenu from "@/components/writing/HoverMenu";
 
-const Tiptap = () => {
+const Tiptap = ({ className }: { className?: string }) => {
   const { editor } = useContext(AppContext);
 
   return (
     <>
       <HoverMenu />
-      <EditorContent editor={editor} />
+      <EditorContent className={className} editor={editor} />
     </>
   );
 };

@@ -1,14 +1,28 @@
 import type { Metadata } from "next";
-import { Inter, Kanit, Arsenal, Outfit } from "next/font/google";
+import {
+  Inter,
+  Kanit,
+  Arsenal,
+  Outfit,
+  Hedvig_Letters_Serif,
+} from "next/font/google";
 
 import "./globals.css";
 import Topbar from "@/components/hud/Topbar";
 import Toolbar from "@/components/hud/Toolbar";
 import AppProvider from "@/components/context/AppProvider";
+import { Toaster } from "sonner";
 
-const inter = Outfit({
+export const sansFont = Outfit({
   subsets: ["latin"],
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+  variable: "--font-sans",
+});
+
+export const serifFont = Hedvig_Letters_Serif({
+  subsets: ["latin"],
+  // weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+  variable: "--font-serif",
 });
 
 export const metadata: Metadata = {
@@ -22,13 +36,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={inter.className}>
+    <html lang="en" className={`${sansFont.variable} ${serifFont.variable}`}>
+      <body className={`${sansFont.className} ${serifFont.variable}`}>
         <AppProvider>
           <Topbar />
           {children}
           <Toolbar />
         </AppProvider>
+
+        <Toaster richColors />
       </body>
     </html>
   );

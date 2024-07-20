@@ -9,18 +9,20 @@ export async function POST(req: Request) {
 
   const result = await streamText({
     model: openai("gpt-3.5-turbo"),
-    messages,
+    messages: messages,
   });
 
-  const data = new StreamData();
+  // const data = new StreamData();
 
-  data.append({ test: "value" });
+  // data.append({ test: "value" });
 
-  const stream = result.toAIStream({
-    onFinal(_) {
-      data.close();
-    },
-  });
+  // const stream = result.toAIStream({
+  //   onFinal(_) {
+  //     data.close();
+  //   },
+  // });
 
-  return new StreamingTextResponse(stream, {}, data);
+  // return new StreamingTextResponse(stream, {}, data);
+
+  return result.toAIStreamResponse();
 }

@@ -1,14 +1,15 @@
 "use client";
 
-import { useState } from "react";
+import { useContext, useState } from "react";
 
 import { MailAdd } from "@/assets/icons/MailAdd";
+import { AppContext } from "../context/AppProvider";
+import { EMPTY_TURN } from "@/lib/constants";
 
 export default function Topbar() {
   return (
     <div className="sticky top-0 z-50 w-full border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className=" w-full mx-auto px-4 flex h-14 max-w-screen-2xl items-center text-zinc-800 justify-between">
-        <span className="font-semibold text-lg">Email Professionaliser</span>
         <NewButton />
       </div>
     </div>
@@ -17,8 +18,19 @@ export default function Topbar() {
 
 const NewButton = () => {
   const [hovering, setHovering] = useState(false);
+
+  const { setTurns, editor } = useContext(AppContext);
+
+  const handleClick = () => {
+    setTurns([EMPTY_TURN]);
+
+    if (!editor) return;
+    editor.commands.clearContent();
+  };
+
   return (
     <button
+      onClick={handleClick}
       onMouseEnter={() => setHovering(true)}
       onMouseLeave={() => setHovering(false)}
       className="flex items-center gap-2"
