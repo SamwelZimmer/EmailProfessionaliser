@@ -28,7 +28,7 @@ interface AppContextProviderProps {
 export interface AppContextType {
   editor: Editor | null;
   turns: Turn[];
-  setTurns: (_turns: Turn[]) => void;
+  setTurns: React.Dispatch<React.SetStateAction<Turn[]>>;
   currentTurn: number;
   generationStatus: GenerationStatus;
   setGenerationStatus: (_generationStatus: GenerationStatus) => void;

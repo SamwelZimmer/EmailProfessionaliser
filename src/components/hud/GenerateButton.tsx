@@ -1,15 +1,13 @@
 "use client";
 
-import React, { useContext, useEffect, useState } from "react";
-import { useChat } from "ai/react";
-import { openai } from "@ai-sdk/openai";
+import React, { useContext, useState } from "react";
+import { toast } from "sonner";
+import { readStreamableValue } from "ai/rsc";
 
 import { Tie } from "@/assets/icons/Tie";
 import { AppContext } from "@/components/context/AppProvider";
 import { streamEmailResponse, getImprovements, getRetro } from "@/lib/queries";
-import { streamText } from "ai";
-import { readStreamableValue } from "ai/rsc";
-import { toast } from "sonner";
+import { Turn } from "@/lib/types";
 
 export default function GenerateButton({ disabled }: { disabled: boolean }) {
   const { turns, currentTurn, setTurns, setGenerationStatus, setIsGenerating } =
@@ -25,7 +23,7 @@ export default function GenerateButton({ disabled }: { disabled: boolean }) {
 
       const improvement = await getImprovements(turns[currentTurn].prompt);
 
-      setTurns((prevTurns: Turn[]) =>
+      setTurns((prevTurns: Turn[]): Turn[] =>
         prevTurns.map((turn, index) =>
           index === currentTurn
             ? {
